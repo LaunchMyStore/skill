@@ -1,0 +1,7 @@
+{
+  "name": "Product Sync",
+  "type": "admin_block",
+  "target": "product.details.block",
+  "url": "/extensions/product-sync/index.html",
+  "settings": []
+}

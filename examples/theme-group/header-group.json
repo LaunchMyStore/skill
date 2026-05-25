@@ -1,0 +1,38 @@
+{
+  "name": "Header",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "settings": {
+        "message": "Free shipping on orders over $100",
+        "bg_color": "#000000",
+        "text_color": "#ffffff"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_position": "left",
+        "sticky": true,
+        "menu": "main-menu"
+      },
+      "blocks": {
+        "nav-1": {
+          "type": "menu",
+          "settings": { "menu": "main-menu" }
+        },
+        "search-1": {
+          "type": "search",
+          "settings": { "placeholder": "Search products" }
+        },
+        "cart-1": {
+          "type": "cart",
+          "settings": { "icon": "bag" }
+        }
+      },
+      "block_order": ["nav-1", "search-1", "cart-1"]
+    }
+  },
+  "order": ["announcement-bar", "header"]
+}

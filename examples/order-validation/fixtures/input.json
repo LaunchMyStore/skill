@@ -1,0 +1,9 @@
+{
+  "cart": {
+    "lines": [
+      { "id": "gid://Cart/Line/1", "quantity":  3, "merchandise": { "id": "gid://Variant/100" } },
+      { "id": "gid://Cart/Line/2", "quantity": 12, "merchandise": { "id": "gid://Variant/200" } }
+    ],
+    "buyerIdentity": { "email": "buyer@yopmail.com", "countryCode": "US" }
+  }
+}

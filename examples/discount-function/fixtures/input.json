@@ -1,0 +1,18 @@
+{
+  "cart": {
+    "lines": [
+      {
+        "id": "gid://Cart/Line/1",
+        "quantity": 2,
+        "merchandise": { "id": "gid://Variant/100", "product": { "tags": ["shoes"] } },
+        "cost": { "amountPerQuantity": { "amount": "60.00" } }
+      },
+      {
+        "id": "gid://Cart/Line/2",
+        "quantity": 1,
+        "merchandise": { "id": "gid://Variant/200", "product": { "tags": ["socks"] } },
+        "cost": { "amountPerQuantity": { "amount": "25.00" } }
+      }
+    ]
+  }
+}

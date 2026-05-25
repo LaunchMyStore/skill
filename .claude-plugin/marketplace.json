@@ -1,0 +1,30 @@
+{
+  "$schema": "https://claude.ai/schemas/marketplace.json",
+  "name": "launchmystore",
+  "displayName": "LaunchMyStore",
+  "description": "Natural-language router for the LaunchMyStore CLI, App Bridge SDK, WASM Functions, Aqua themes, and the LaunchMyStore MCP server (130+ merchant-store tools).",
+  "version": "1.0.0",
+  "author": "LaunchMyStore",
+  "homepage": "https://launchmystore.io",
+  "repository": "https://github.com/LaunchMyStore/skill",
+  "license": "MIT",
+  "plugins": [
+    {
+      "name": "launchmystore",
+      "skillPath": "SKILL.md",
+      "references": "references",
+      "examples": "examples",
+      "tags": [
+        "launchmystore",
+        "lms",
+        "ecommerce",
+        "storefront",
+        "cli",
+        "app-bridge",
+        "mcp",
+        "aqua",
+        "liquid"
+      ]
+    }
+  ]
+}

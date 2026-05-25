@@ -1,0 +1,31 @@
+{%- comment -%}
+  Reusable product card. Drop into `snippets/product-card.liquid`.
+
+  Usage:
+    {% render 'product-card', product: my_product %}
+    {% render 'product-card' for collection.products as product %}
+{%- endcomment -%}
+<a href="{{ product.url }}" class="product-card">
+  {%- if product.featured_image -%}
+    <img
+      src="{{ product.featured_image | image_url: width: 600 }}"
+      alt="{{ product.featured_image.alt | default: product.title }}"
+      loading="lazy"
+      width="{{ product.featured_image.width }}"
+      height="{{ product.featured_image.height }}"
+      class="product-card__image">
+  {%- endif -%}
+
+  <h3 class="product-card__title">{{ product.title }}</h3>
+
+  <p class="product-card__price">
+    {%- if product.compare_at_price > product.price -%}
+      <s>{{ product.compare_at_price | money }}</s>
+    {%- endif -%}
+    <strong>{{ product.price | money }}</strong>
+  </p>
+
+  {%- if product.metafields.custom.badge != blank -%}
+    <span class="product-card__badge">{{ product.metafields.custom.badge }}</span>
+  {%- endif -%}
+</a>

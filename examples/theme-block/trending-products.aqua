@@ -1,0 +1,37 @@
+{%- comment -%}
+  App-supplied storefront block. Ships as `.aqua` + `.schema.json` sidecar.
+  Renders a horizontal row of N trending products by tag.
+{%- endcomment -%}
+
+<div class="trending-block">
+  <h2 class="trending-block__title">{{ block.settings.title }}</h2>
+
+  {%- assign tag = block.settings.tag -%}
+  {%- assign limit = block.settings.limit | default: 4 -%}
+  {%- assign matched = collections.all.products
+       | where: 'tags', tag
+       | slice: 0, limit -%}
+
+  <div class="trending-block__grid" style="--cols: {{ limit }};">
+    {%- for product in matched -%}
+      <a href="{{ product.url }}" class="trending-block__card">
+        <img
+          src="{{ product.featured_image | image_url: width: 400 }}"
+          alt="{{ product.title }}"
+          loading="lazy">
+        <h3>{{ product.title }}</h3>
+        <p>{{ product.price | money }}</p>
+      </a>
+    {%- else -%}
+      <p class="trending-block__empty">No products tagged "{{ tag }}" yet.</p>
+    {%- endfor -%}
+  </div>
+</div>
+
+<style>
+  .trending-block__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 4), 1fr);
+    gap: 1rem;
+  }
+</style>

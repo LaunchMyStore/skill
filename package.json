@@ -1,0 +1,49 @@
+{
+  "name": "@launchmystore/claude-skill",
+  "version": "1.0.0",
+  "description": "LaunchMyStore Claude Skill — natural-language router for the LaunchMyStore CLI, App Bridge SDK, WASM Functions, Aqua themes, and the LaunchMyStore MCP server (130+ merchant-store tools).",
+  "bin": {
+    "launchmystore-skill-install": "./bin/install.js"
+  },
+  "files": [
+    "SKILL.md",
+    "references",
+    "examples",
+    "bin",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "postinstall": "node ./bin/install.js"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "license": "MIT",
+  "author": "LaunchMyStore <support@launchmystore.io>",
+  "homepage": "https://github.com/LaunchMyStore/skill",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LaunchMyStore/skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LaunchMyStore/skill/issues",
+    "email": "support@launchmystore.io"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "claude-skill",
+    "agent-skill",
+    "launchmystore",
+    "lms",
+    "ecommerce",
+    "storefront",
+    "cli",
+    "app-bridge",
+    "mcp",
+    "aqua",
+    "liquid"
+  ]
+}

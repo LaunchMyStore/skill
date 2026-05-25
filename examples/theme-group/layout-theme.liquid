@@ -1,0 +1,26 @@
+{%- comment -%}
+  Excerpt from a theme's `layout/theme.liquid` showing how section groups
+  hook into the document. `sections` (no quoting) renders the group file
+  at `sections/<name>-group.json`.
+{%- endcomment -%}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page_title }} — {{ shop.name }}</title>
+    {{ content_for_header }}
+  </head>
+  <body class="template-{{ template.name }}">
+
+    {%- sections 'header-group' -%}
+
+    <main role="main">
+      {{ content_for_layout }}
+    </main>
+
+    {%- sections 'footer-group' -%}
+    {%- sections 'overlay-group' -%}
+
+  </body>
+</html>

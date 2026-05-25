@@ -1,0 +1,21 @@
+{
+  "cart": {
+    "lines": [
+      {
+        "id": "gid://Cart/Line/1",
+        "quantity": 1,
+        "merchandise": { "id": "gid://Variant/100", "sku": "SKU-A", "product": { "title": "Widget A" } }
+      },
+      {
+        "id": "gid://Cart/Line/2",
+        "quantity": 1,
+        "merchandise": { "id": "gid://Variant/200", "sku": "SKU-B", "product": { "title": "Widget B" } }
+      },
+      {
+        "id": "gid://Cart/Line/3",
+        "quantity": 1,
+        "merchandise": { "id": "gid://Variant/300", "sku": "SKU-C", "product": { "title": "Widget C (not in bundle)" } }
+      }
+    ]
+  }
+}

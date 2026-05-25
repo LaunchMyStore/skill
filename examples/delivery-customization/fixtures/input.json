@@ -1,0 +1,14 @@
+{
+  "cart": {
+    "deliveryGroups": [
+      {
+        "id": "g1",
+        "deliveryAddress": { "address1": "PO Box 1234", "country": "US" },
+        "deliveryOptions": [
+          { "handle": "standard",  "title": "Standard",  "cost": { "amount": "5.00" } },
+          { "handle": "overnight", "title": "Overnight", "cost": { "amount": "25.00" } }
+        ]
+      }
+    ]
+  }
+}

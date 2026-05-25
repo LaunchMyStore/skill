@@ -1,0 +1,17 @@
+{
+  "cart": {
+    "lines": [
+      {
+        "id": "gid://Cart/Line/1",
+        "quantity": 6,
+        "cost": { "amountPerQuantity": { "amount": "100.00" } }
+      }
+    ],
+    "buyerIdentity": { "countryCode": "US" }
+  },
+  "paymentMethods": [
+    { "id": "cod",  "name": "Cash on Delivery" },
+    { "id": "card", "name": "Credit / debit card" },
+    { "id": "paypal", "name": "PayPal" }
+  ]
+}

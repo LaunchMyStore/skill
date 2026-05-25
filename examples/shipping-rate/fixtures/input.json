@@ -1,0 +1,12 @@
+{
+  "cart": {
+    "deliveryAddress": { "country": "US", "province": "CA", "zip": "94016" },
+    "deliverableLines": [
+      {
+        "id": "gid://Cart/Line/1",
+        "quantity": 2,
+        "cost": { "amountPerQuantity": { "amount": "60.00" } }
+      }
+    ]
+  }
+}

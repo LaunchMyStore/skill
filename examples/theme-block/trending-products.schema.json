@@ -1,0 +1,28 @@
+{
+  "name": "Trending products",
+  "target": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Trending now"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Tag to match",
+      "default": "trending",
+      "info": "Products with this tag will appear in the grid."
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Number of products",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    }
+  ]
+}
