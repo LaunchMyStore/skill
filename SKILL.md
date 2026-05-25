@@ -16,32 +16,17 @@ metadata:
   author: LaunchMyStore
   homepage: https://launchmystore.io
   repository: https://github.com/LaunchMyStore/skill
-tags:
-  - launchmystore
-  - lms
-  - ecommerce
-  - storefront
-  - cli
-  - app-bridge
-  - mcp
-  - aqua
-  - liquid
-compatibility:
-  - claude-code
-  - claude-ai
-  - claude-api
-  - openai-codex
-  - cursor
-  - gemini-cli
-  - windsurf
-  - antigravity
-  - aider
-  - opencode
-  - openclaw
-  - kilo-code
-  - augment
-  - hermes-agent
-  - mistral-vibe
+  tags:
+    - launchmystore
+    - lms
+    - ecommerce
+    - storefront
+    - cli
+    - app-bridge
+    - mcp
+    - aqua
+    - liquid
+  compatibility: "claude-code, claude-ai, claude-api, openai-codex, cursor, gemini-cli, windsurf, antigravity, aider, opencode, openclaw, kilo-code, augment, hermes-agent, mistral-vibe"
 ---
 
 # LaunchMyStore
