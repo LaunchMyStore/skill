@@ -12,7 +12,7 @@ description: >
   block", "install an extension", "deploy a function", "use launchmystore",
   "lms", or any mention of LaunchMyStore / launchmystore.io.
 metadata:
-  version: 1.1.0
+  version: 1.1.1
   author: LaunchMyStore
   homepage: https://launchmystore.io
   repository: https://github.com/LaunchMyStore/skill
@@ -37,8 +37,11 @@ compatibility:
   - antigravity
   - aider
   - opencode
+  - openclaw
   - kilo-code
   - augment
+  - hermes-agent
+  - mistral-vibe
 ---
 
 # LaunchMyStore

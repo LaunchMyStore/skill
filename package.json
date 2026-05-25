@@ -1,6 +1,6 @@
 {
   "name": "@launchmystore/claude-skill",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "LaunchMyStore universal agent skill (SKILL.md open standard) — works in Claude Code, Claude.ai, the Claude API, OpenAI Codex, Cursor, Gemini CLI, Windsurf, Antigravity, Aider, OpenCode, and any other SKILL.md-compatible host. Natural-language router for the LaunchMyStore CLI, App Bridge SDK, WASM Functions, Aqua themes, and the LaunchMyStore MCP server (130+ merchant-store tools).",
   "bin": {
     "launchmystore-skill-install": "./bin/install.js"
@@ -50,6 +50,7 @@
     "antigravity",
     "aider",
     "opencode",
+    "openclaw",
     "kilo-code",
     "augment",
     "hermes",

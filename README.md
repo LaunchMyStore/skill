@@ -8,8 +8,9 @@ Built on the open **`SKILL.md`** standard, so the same skill works
 identically in:
 
 > **Claude Code · Claude.ai · the Claude API · OpenAI Codex · Cursor ·
-> Gemini CLI · Windsurf · Antigravity · Aider · OpenCode · Kilo Code ·
-> Augment · Hermes Agent · Mistral Vibe** — anywhere SKILL.md is supported.
+> Gemini CLI · Windsurf · Antigravity · Aider · OpenCode · OpenClaw ·
+> Kilo Code · Augment · Hermes Agent · Mistral Vibe** — anywhere
+> SKILL.md is supported.
 
 Nothing in the skill is Claude-specific. If a host AI can read `SKILL.md`
 and follow Markdown instructions, this skill works.
@@ -82,10 +83,18 @@ git clone https://github.com/LaunchMyStore/skill ~/.cursor/skills/launchmystore
 git clone https://github.com/LaunchMyStore/skill ~/.gemini/skills/launchmystore
 ```
 
-### Windsurf / Antigravity / Aider / OpenCode / Kilo Code / Augment
+### OpenClaw
+
+```bash
+git clone https://github.com/LaunchMyStore/skill ~/.openclaw/workspace/skills/launchmystore
+openclaw gateway restart
+```
+
+### Windsurf / Antigravity / Aider / OpenCode / Kilo Code / Augment / Hermes / Mistral Vibe
 
 Each tool reads `SKILL.md` from its own skills directory (typically
-`~/.<tool>/skills/<name>/`). Clone the repo into that directory.
+`~/.<tool>/skills/<name>/` — Mistral Vibe uses `~/.vibe/skills/<name>/`).
+Clone the repo into that directory.
 
 ### Universal install (every tool at once)
 

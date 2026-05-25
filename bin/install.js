@@ -23,21 +23,24 @@ const home = os.homedir();
 const universalBase =
   process.env.SKILLS_HOME || path.join(home, '.skills');
 
-// Per-tool skill dirs. Only installed if the tool's parent dir exists,
-// to avoid creating directories for tools the user has never used.
+// Per-tool skill dirs. Only installed if the tool's root dir (parent of
+// the skills dir) exists, to avoid creating directories for tools the
+// user has never used. Each entry can supply an explicit `root` for
+// tools that don't follow the ~/.<tool>/skills/<name>/ convention.
 const TOOL_DESTINATIONS = [
-  { tool: 'Claude Code / Claude.ai', dir: path.join(home, '.claude', 'skills', SKILL_NAME) },
-  { tool: 'OpenAI Codex',            dir: path.join(home, '.codex', 'skills', SKILL_NAME) },
-  { tool: 'Cursor',                  dir: path.join(home, '.cursor', 'skills', SKILL_NAME) },
-  { tool: 'Gemini CLI',              dir: path.join(home, '.gemini', 'skills', SKILL_NAME) },
-  { tool: 'Windsurf',                dir: path.join(home, '.windsurf', 'skills', SKILL_NAME) },
-  { tool: 'Antigravity',             dir: path.join(home, '.antigravity', 'skills', SKILL_NAME) },
-  { tool: 'Aider',                   dir: path.join(home, '.aider', 'skills', SKILL_NAME) },
-  { tool: 'OpenCode',                dir: path.join(home, '.opencode', 'skills', SKILL_NAME) },
-  { tool: 'Kilo Code',               dir: path.join(home, '.kilocode', 'skills', SKILL_NAME) },
-  { tool: 'Augment',                 dir: path.join(home, '.augment', 'skills', SKILL_NAME) },
-  { tool: 'Hermes Agent',            dir: path.join(home, '.hermes', 'skills', SKILL_NAME) },
-  { tool: 'Mistral Vibe',            dir: path.join(home, '.mistral-vibe', 'skills', SKILL_NAME) },
+  { tool: 'Claude Code / Claude.ai', dir: path.join(home, '.claude', 'skills', SKILL_NAME),                root: path.join(home, '.claude') },
+  { tool: 'OpenAI Codex',            dir: path.join(home, '.codex', 'skills', SKILL_NAME),                 root: path.join(home, '.codex') },
+  { tool: 'Cursor',                  dir: path.join(home, '.cursor', 'skills', SKILL_NAME),                root: path.join(home, '.cursor') },
+  { tool: 'Gemini CLI',              dir: path.join(home, '.gemini', 'skills', SKILL_NAME),                root: path.join(home, '.gemini') },
+  { tool: 'Windsurf',                dir: path.join(home, '.windsurf', 'skills', SKILL_NAME),              root: path.join(home, '.windsurf') },
+  { tool: 'Antigravity',             dir: path.join(home, '.antigravity', 'skills', SKILL_NAME),           root: path.join(home, '.antigravity') },
+  { tool: 'Aider',                   dir: path.join(home, '.aider', 'skills', SKILL_NAME),                 root: path.join(home, '.aider') },
+  { tool: 'OpenCode',                dir: path.join(home, '.opencode', 'skills', SKILL_NAME),              root: path.join(home, '.opencode') },
+  { tool: 'OpenClaw',                dir: path.join(home, '.openclaw', 'workspace', 'skills', SKILL_NAME), root: path.join(home, '.openclaw') },
+  { tool: 'Kilo Code',               dir: path.join(home, '.kilocode', 'skills', SKILL_NAME),              root: path.join(home, '.kilocode') },
+  { tool: 'Augment',                 dir: path.join(home, '.augment', 'skills', SKILL_NAME),               root: path.join(home, '.augment') },
+  { tool: 'Hermes Agent',            dir: path.join(home, '.hermes', 'skills', SKILL_NAME),                root: path.join(home, '.hermes') },
+  { tool: 'Mistral Vibe',            dir: path.join(home, '.vibe', 'skills', SKILL_NAME),                  root: path.join(home, '.vibe') },
 ];
 
 function copyDir(src, dest) {
@@ -70,11 +73,6 @@ function installTo(dest, pkgRoot) {
   return true;
 }
 
-function parentExists(dir) {
-  // dir = ~/.codex/skills/launchmystore — check ~/.codex exists
-  return fs.existsSync(path.dirname(path.dirname(dir)));
-}
-
 function main() {
   const pkgRoot = path.resolve(__dirname, '..');
   const installed = [];
@@ -85,8 +83,8 @@ function main() {
   if (installTo(universalDest, pkgRoot)) installed.push({ tool: 'Universal (agentskills.io)', dir: universalDest });
 
   // 2. Per-tool fan-out.
-  for (const { tool, dir } of TOOL_DESTINATIONS) {
-    if (parentExists(dir)) {
+  for (const { tool, dir, root } of TOOL_DESTINATIONS) {
+    if (fs.existsSync(root)) {
       if (installTo(dir, pkgRoot)) installed.push({ tool, dir });
     } else {
       skipped.push({ tool, dir });

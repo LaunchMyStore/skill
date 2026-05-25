@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.1 — 2026-05-25
+
+Added **OpenClaw** support (uses the non-standard
+`~/.openclaw/workspace/skills/<name>/` path, not `~/.openclaw/skills/`).
+Added Hermes Agent (`~/.hermes/skills/`) and Mistral Vibe
+(`~/.vibe/skills/`) to the install fan-out and frontmatter compatibility
+list. `bin/install.js` now uses an explicit `root` per tool so non-standard
+nested paths (like OpenClaw's `workspace/skills/`) are detected correctly.
+
 ## 1.1.0 — 2026-05-25
 
 Universal multi-tool support — the skill now installs into every
