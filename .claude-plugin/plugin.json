@@ -1,0 +1,27 @@
+{
+  "$schema": "https://claude.ai/schemas/plugin.json",
+  "name": "launchmystore",
+  "displayName": "LaunchMyStore",
+  "description": "Natural-language router for the LaunchMyStore e-commerce platform — scaffolds apps with the lms CLI, dispatches App Bridge actions (Toast, Modal, ResourcePicker, SessionToken), builds WASM Functions (cart transform, discount, shipping rate, payment customization, delivery customization, order validation), writes Aqua/Liquid theme sections + blocks + snippets, and drives the LaunchMyStore MCP server (130+ merchant-store tools).",
+  "version": "1.1.1",
+  "author": {
+    "name": "LaunchMyStore",
+    "email": "support@launchmystore.io",
+    "url": "https://launchmystore.io"
+  },
+  "homepage": "https://launchmystore.io",
+  "repository": "https://github.com/LaunchMyStore/skill",
+  "license": "MIT",
+  "keywords": [
+    "launchmystore",
+    "lms",
+    "ecommerce",
+    "storefront",
+    "cli",
+    "app-bridge",
+    "mcp",
+    "aqua",
+    "liquid",
+    "wasm-functions"
+  ]
+}
