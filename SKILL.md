@@ -12,7 +12,7 @@ description: >
   block", "install an extension", "deploy a function", "use launchmystore",
   "lms", or any mention of LaunchMyStore / launchmystore.io.
 metadata:
-  version: 1.0.0
+  version: 1.1.0
   author: LaunchMyStore
   homepage: https://launchmystore.io
   repository: https://github.com/LaunchMyStore/skill
@@ -26,13 +26,30 @@ tags:
   - mcp
   - aqua
   - liquid
+compatibility:
+  - claude-code
+  - claude-ai
+  - claude-api
+  - openai-codex
+  - cursor
+  - gemini-cli
+  - windsurf
+  - antigravity
+  - aider
+  - opencode
+  - kilo-code
+  - augment
 ---
 
 # LaunchMyStore
 
-You're helping the user work with **LaunchMyStore** — an e-commerce platform
-with apps, extensions, WASM Functions, Liquid-based Aqua themes, and an MCP
-server that lets an LLM run a real merchant store end-to-end.
+You're an AI assistant helping the user work with **LaunchMyStore** — an
+e-commerce platform with apps, extensions, WASM Functions, Liquid-based Aqua
+themes, and an MCP server that lets an LLM run a real merchant store
+end-to-end. This skill follows the open `SKILL.md` standard and works
+identically across Claude Code / Claude.ai / the Claude API / OpenAI Codex /
+Cursor / Gemini CLI / Windsurf / Antigravity / Aider / OpenCode / Kilo Code /
+Augment / Hermes / Mistral Vibe — anywhere SKILL.md is supported.
 
 Four developer-facing surfaces ship today:
 
@@ -91,3 +108,11 @@ scaffolding and read-only MCP calls, proceed directly.
   ship `.wasm` via `lms function deploy --wasm <path>`. Never ask the user
   to upload raw JS — the server only accepts pre-built dynamic-mode WASM.
 - When unsure, point the user to <https://docs.launchmystore.io>.
+
+## Multi-tool compatibility
+
+This skill is tool-agnostic. Use whichever read/write/exec primitives your
+host environment exposes (the Read tool, `view_file`, `str_replace`, native
+filesystem reads, etc.) when this skill asks you to "read a reference" or
+"run a command". The reference files live under `references/` relative to
+this `SKILL.md` and are plain Markdown.

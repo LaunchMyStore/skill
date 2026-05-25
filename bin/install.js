@@ -1,14 +1,44 @@
 #!/usr/bin/env node
 /**
- * Postinstall: copy SKILL.md + references/ + examples/ from the published
- * package into ~/.claude/skills/launchmystore/ so the skill becomes
- * available to Claude Code on the next session.
+ * Universal SKILL.md installer.
  *
- * Safe to re-run: it always replaces the destination directory.
+ * Copies SKILL.md + references/ + examples/ from this package into every
+ * supported tool's skills directory on the host machine. Always installs
+ * to the canonical agentskills.io universal location, then fans out to
+ * each tool dir that already exists. New tools added by simply adding
+ * their dir to TOOL_DESTINATIONS below.
+ *
+ * Honors SKILLS_HOME env var to override the universal base dir.
+ *
+ * Safe to re-run: each destination is wiped + rewritten.
  */
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+
+const SKILL_NAME = 'launchmystore';
+const home = os.homedir();
+
+// Universal location (agentskills.io standard) — always installed.
+const universalBase =
+  process.env.SKILLS_HOME || path.join(home, '.skills');
+
+// Per-tool skill dirs. Only installed if the tool's parent dir exists,
+// to avoid creating directories for tools the user has never used.
+const TOOL_DESTINATIONS = [
+  { tool: 'Claude Code / Claude.ai', dir: path.join(home, '.claude', 'skills', SKILL_NAME) },
+  { tool: 'OpenAI Codex',            dir: path.join(home, '.codex', 'skills', SKILL_NAME) },
+  { tool: 'Cursor',                  dir: path.join(home, '.cursor', 'skills', SKILL_NAME) },
+  { tool: 'Gemini CLI',              dir: path.join(home, '.gemini', 'skills', SKILL_NAME) },
+  { tool: 'Windsurf',                dir: path.join(home, '.windsurf', 'skills', SKILL_NAME) },
+  { tool: 'Antigravity',             dir: path.join(home, '.antigravity', 'skills', SKILL_NAME) },
+  { tool: 'Aider',                   dir: path.join(home, '.aider', 'skills', SKILL_NAME) },
+  { tool: 'OpenCode',                dir: path.join(home, '.opencode', 'skills', SKILL_NAME) },
+  { tool: 'Kilo Code',               dir: path.join(home, '.kilocode', 'skills', SKILL_NAME) },
+  { tool: 'Augment',                 dir: path.join(home, '.augment', 'skills', SKILL_NAME) },
+  { tool: 'Hermes Agent',            dir: path.join(home, '.hermes', 'skills', SKILL_NAME) },
+  { tool: 'Mistral Vibe',            dir: path.join(home, '.mistral-vibe', 'skills', SKILL_NAME) },
+];
 
 function copyDir(src, dest) {
   fs.mkdirSync(dest, { recursive: true });
@@ -23,36 +53,53 @@ function copyDir(src, dest) {
   }
 }
 
-function main() {
-  const pkgRoot = path.resolve(__dirname, '..');
-  const home = os.homedir();
-  const dest = path.join(home, '.claude', 'skills', 'launchmystore');
-
-  // Wipe + recreate so removed files actually go away
+function installTo(dest, pkgRoot) {
   try {
     fs.rmSync(dest, { recursive: true, force: true });
   } catch {}
   fs.mkdirSync(dest, { recursive: true });
 
-  // Copy SKILL.md
   const skillMd = path.join(pkgRoot, 'SKILL.md');
-  if (fs.existsSync(skillMd)) {
-    fs.copyFileSync(skillMd, path.join(dest, 'SKILL.md'));
-  } else {
-    console.error('[launchmystore-skill] SKILL.md not found in package — skipping');
-    process.exit(0);
-  }
+  if (!fs.existsSync(skillMd)) return false;
+  fs.copyFileSync(skillMd, path.join(dest, 'SKILL.md'));
 
-  // Copy references/ and examples/
   for (const sub of ['references', 'examples']) {
     const src = path.join(pkgRoot, sub);
-    if (fs.existsSync(src)) {
-      copyDir(src, path.join(dest, sub));
+    if (fs.existsSync(src)) copyDir(src, path.join(dest, sub));
+  }
+  return true;
+}
+
+function parentExists(dir) {
+  // dir = ~/.codex/skills/launchmystore — check ~/.codex exists
+  return fs.existsSync(path.dirname(path.dirname(dir)));
+}
+
+function main() {
+  const pkgRoot = path.resolve(__dirname, '..');
+  const installed = [];
+  const skipped = [];
+
+  // 1. Universal location — always.
+  const universalDest = path.join(universalBase, SKILL_NAME);
+  if (installTo(universalDest, pkgRoot)) installed.push({ tool: 'Universal (agentskills.io)', dir: universalDest });
+
+  // 2. Per-tool fan-out.
+  for (const { tool, dir } of TOOL_DESTINATIONS) {
+    if (parentExists(dir)) {
+      if (installTo(dir, pkgRoot)) installed.push({ tool, dir });
+    } else {
+      skipped.push({ tool, dir });
     }
   }
 
-  console.log(`[launchmystore-skill] installed to ${dest}`);
-  console.log('[launchmystore-skill] restart Claude Code, then try: /launchmystore');
+  console.log(`[launchmystore-skill] installed to ${installed.length} location(s):`);
+  for (const { tool, dir } of installed) console.log(`  + ${tool.padEnd(28)} ${dir}`);
+  if (skipped.length) {
+    console.log(`[launchmystore-skill] skipped ${skipped.length} (tool not detected — clone manually if you use it):`);
+    for (const { tool, dir } of skipped) console.log(`  - ${tool.padEnd(28)} ${dir}`);
+  }
+  console.log('[launchmystore-skill] restart your AI host, then try: /launchmystore');
 }
 
 try {
